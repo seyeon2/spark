@@ -16,53 +16,45 @@ license: |
   limitations under the License.
 ---
 
-Welcome to the Spark documentation!
+Spark 문서에 오신 것을 환영합니다! 
 
-This readme will walk you through navigating and building the Spark documentation, which is included
-here with the Spark source code. You can also find documentation specific to release versions of
-Spark at https://spark.apache.org/documentation.html.
+이 문서에서는 Spark 소스 코드와 함께 스파크 문서를 탐색하고 작성하는 방법을 안내합니다. https://spark.apache.org/documentation.html에서 Spark 버전 릴리스 관련 설명서를 찾을 수도 있습니다.
 
-Read on to learn more about viewing documentation in plain text (i.e., markdown) or building the
-documentation yourself. Why build it yourself? So that you have the docs that correspond to
-whichever version of Spark you currently have checked out of revision control.
+문서를 일반 텍스트로 보거나 문서를 직접 작성하는 방법에 대해 자세히 알아보십시오. 왜 직접 작성하나요? 당신이 현재 수정기호 제어에서 체크아웃한 Spark 버전에 해당하는 문서를 가질 수 있기 때문입니다.
 
-## Prerequisites
+## 전제조건
 
-The Spark documentation build uses a number of tools to build HTML docs and API docs in Scala, Java,
-Python, R and SQL.
+스파크 문서 빌드는 스칼라, 자바, 파이썬, R 및 SQL로 HTML 문서와 API 문서를 빌드하기 위해 많은 도구를 사용한다.
 
-You need to have [Ruby](https://www.ruby-lang.org/en/documentation/installation/) and
-[Python](https://docs.python.org/2/using/unix.html#getting-and-installing-the-latest-version-of-python)
-installed. Make sure the `bundle` command is available, if not install the Gem containing it:
+당신은 [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 와
+[Python](https://docs.python.org/2/using/unix.html#getting-and-installing-the-latest-version-of-python)을 설치해야 합니다. `bundle` 명령을 사용할 수 있는지 확인하고, 해당 명령이 포함된 Gem을 설치합니다:
 
 ```sh
 $ sudo gem install bundler
 ```
 
-After this all the required ruby dependencies can be installed from the `docs/` directory via the Bundler:
+이후 모든 필수 ruby 종속성을 번들러를 통해 `docs/` 디렉토리에서 설치할 수 있습니다:
 
 ```sh
 $ cd docs
 $ bundle install
 ```
 
-Note: If you are on a system with both Ruby 1.9 and Ruby 2.0 you may need to replace gem with gem2.0.
+참고: Ruby 1.9와 Ruby 2.0을 모두 사용하는 시스템에 있는 경우 gem2.0으로 교체해야 할 수 있습니다.
 
-### R Documentation
+### R 문서
 
-If you'd like to generate R documentation, you'll need to [install Pandoc](https://pandoc.org/installing.html)
-and install these libraries:
+R 문서를 생성하려면 [Pandoc 설치](https://pandoc.org/installing.html)을 설치하고 다음 라이브러리를 설치해야 합니다.
 
 ```sh
 $ sudo Rscript -e 'install.packages(c("knitr", "devtools", "testthat", "rmarkdown"), repos="https://cloud.r-project.org/")'
 $ sudo Rscript -e 'devtools::install_version("roxygen2", version = "7.1.1", repos="https://cloud.r-project.org/")'
 ```
+참고: 다른 버전의 Roxygen2는 SparkR 설명서 생성에서 작동할 수 있지만 `$SPARK_HOME/R/pkg/DESCRIPTION`의 `RoxygenNote`  필드는 7.1.1이며 버전이 일치하지 않을 경우 업데이트됩니다.
 
-Note: Other versions of roxygen2 might work in SparkR documentation generation but `RoxygenNote` field in `$SPARK_HOME/R/pkg/DESCRIPTION` is 7.1.1, which is updated if the version is mismatched.
+### API 문서
 
-### API Documentation
-
-To generate API docs for any language, you'll need to install these libraries:
+어떤 언어에 대한 API 문서를 생성하려면 다음 라이브러리를 설치해야 합니다.
 
 <!--
 TODO(SPARK-32407): Sphinx 3.1+ does not correctly index nested classes.
@@ -76,57 +68,40 @@ See also https://issues.apache.org/jira/browse/SPARK-35375.
 $ sudo pip install 'sphinx<3.1.0' mkdocs numpy pydata_sphinx_theme ipython nbsphinx numpydoc sphinx-plotly-directive 'jinja2<3.0.0'
 ```
 
-## Generating the Documentation HTML
+## HTML 문서 생성
 
-We include the Spark documentation as part of the source (as opposed to using a hosted wiki, such as
-the github wiki, as the definitive documentation) to enable the documentation to evolve along with
-the source code and be captured by revision control (currently git). This way the code automatically
-includes the version of the documentation that is relevant regardless of which version or release
-you have checked out or downloaded.
+우리는 문서가 소스 코드와 함께 발전하고 개정 제어(현재 git)에 의해 캡처될 수 있도록 하기 위해 스파크 문서를 소스의 일부로 포함한다. 이렇게 하면 체크아웃하거나 다운로드한 버전 또는 릴리스에 관계없이 코드에는 관련 설명서의 버전이 자동으로 포함됩니다.
 
-In this directory you will find text files formatted using Markdown, with an ".md" suffix. You can
-read those text files directly if you want. Start with `index.md`.
+이 디렉토리에는 ".md" 접미사와 함께 마크다운을 사용하여 포맷된 텍스트 파일이 있습니다. 당신이 원하면 그 파일들을 직접 읽을 수 있습니다. `index.md`부터 시작하세요.
 
-Execute `bundle exec jekyll build` from the `docs/` directory to compile the site. Compiling the site with
-Jekyll will create a directory called `_site` containing `index.html` as well as the rest of the
-compiled files.
+`docs/` 디렉토리에서 `bundle exec jekyll build`을 실행하여 컴파일합니다. Jekyll을 사용하여 컴파일하면 `index.html`뿐만 아니라 컴파일된 나머지 파일을 포함하는 `_site`라는 디렉토리가 생성됩니다.
 
 ```sh
 $ cd docs
 $ bundle exec jekyll build
 ```
 
-You can modify the default Jekyll build as follows:
+다음과 같이 기본 Jekyll 빌드를 수정할 수 있습니다.
 
 ```sh
-# Skip generating API docs (which takes a while)
+# API 문서 생성 건너뛰기(시간 소요)
+
 $ SKIP_API=1 bundle exec jekyll build
 
-# Serve content locally on port 4000
+# 로컬 포트 4000에서 콘텐츠 제공
 $ bundle exec jekyll serve --watch
 
-# Build the site with extra features used on the live page
+# 라이브 페이지에서 사용되는 추가 기능으로 사이트 구축
+
 $ PRODUCTION=1 bundle exec jekyll build
 ```
 
-## API Docs (Scaladoc, Javadoc, Sphinx, roxygen2, MkDocs)
+## API 문서 (Scaladoc, Javadoc, Sphinx, roxygen2, MkDocs)
 
-You can build just the Spark scaladoc and javadoc by running `./build/sbt unidoc` from the `$SPARK_HOME` directory.
+당신은 `$SPARK_HOME` 디렉토리에서 `./build/sbt unidoc`을 실행하여 Spark scaladoc 과 javadoc만을 빌드할 수 있습니다. 
 
-Similarly, you can build just the PySpark docs by running `make html` from the
-`$SPARK_HOME/python/docs` directory. Documentation is only generated for classes that are listed as
-public in `__init__.py`. The SparkR docs can be built by running `$SPARK_HOME/R/create-docs.sh`, and
-the SQL docs can be built by running `$SPARK_HOME/sql/create-docs.sh`
-after [building Spark](https://github.com/apache/spark#building-spark) first.
+마찬가지로 `$SPARK_HOME/python/docs` 디렉토리에서 `make html`을 실행하여 PySpark 문서만 작성할 수 있습니다. 설명서는 `__init__.py`에 public으로 나열된 클래스에 대해서만 생성됩니다. SparkR 문서는 `$SPARK_HOME/R/create-docs.sh`를 실행하여 작성할 수 있습니다. 그리고 SQL 문서는 [building Spark](https://github.com/apache/spark#building-spark)를 먼저 구축한 후 `$SPARK_HOME/sql/create-docs.sh`를 실행하여 작성할 수 있습니다.
 
-When you run `bundle exec jekyll build` in the `docs` directory, it will also copy over the scaladoc and javadoc for the various
-Spark subprojects into the `docs` directory (and then also into the `_site` directory). We use a
-jekyll plugin to run `./build/sbt unidoc` before building the site so if you haven't run it (recently) it
-may take some time as it generates all of the scaladoc and javadoc using [Unidoc](https://github.com/sbt/sbt-unidoc).
-The jekyll plugin also generates the PySpark docs using [Sphinx](http://sphinx-doc.org/), SparkR docs
-using [roxygen2](https://cran.r-project.org/web/packages/roxygen2/index.html) and SQL docs
-using [MkDocs](https://www.mkdocs.org/).
+`docs` 디렉토리에서 `bundle exec jekyll build`를 실행하면 다양한 스파크 하위 프로젝트의 scaladoc 과 javadoc 통해 `docs` 디렉토리(이후 `_site` 디렉토리에도 복사됩니다. 사이트를 구축하기 전에 jekyll 플러그인을 사용하여 `./build/sbt unidoc` 을 실행합니다. 만약 당신이 실행하지 않은 경우 [Unidoc](https://github.com/sbt/sbt-unidoc))을 사용하여 모든 scaladoc 및 javadoc 을 생성하므로 시간이 걸릴 수 있습니다. jekyll 플러그인은 또한 [Spinkx](http://sphinx-doc.org/),를 사용하여 PySpark 문서를 생성하고 [roxygen2](https://cran.r-project.org/web/packages/roxygen2/index.html)를 사용하는 SparkR 문서와 [MkDocs](https://www.mkdocs.org/))를 사용하는 SQL 문서를 생성합니다.
 
-NOTE: To skip the step of building and copying over the Scala, Java, Python, R and SQL API docs, run `SKIP_API=1
-bundle exec jekyll build`. In addition, `SKIP_SCALADOC=1`, `SKIP_PYTHONDOC=1`, `SKIP_RDOC=1` and `SKIP_SQLDOC=1` can be used
-to skip a single step of the corresponding language. `SKIP_SCALADOC` indicates skipping both the Scala and Java docs.
+참고: Scala, Java, Python, R 및 SQL API 문서를 빌드하고 복사하는 단계를 건너뛰려면 `SKIP_API=1 bundle exec jekyll build`를 실행하십시오. 또한 `SKIP_SCALADOC=1`, `SKIP_PYTHONDOC=1`, `SKIP_RDOC=1` 및 `SKIP_SQLDOC=1` 을 사용하여 해당 언어의 한 단계를 건너뛸 수 있습니다. `SKIP_SCALADOC`는 Scala와 Java 문서를 모두 건너뛰는 것을 나타냅니다.
