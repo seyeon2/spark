@@ -1,57 +1,40 @@
 ---
-layout: global
-title: Naive Bayes - RDD-based API
-displayTitle: Naive Bayes - RDD-based API
-license: |
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+레이아웃: 전역
+제목: 네이비 베이즈 - RDD 기반 API
+타이틀: 네이브 베이즈 - RDD 기반 API
+라이센스: |
+  하나 이상의 ASF(Apache Software Foundation)에 라이센스 부여
+  기여자 라이센스 계약.  다음에 배포된 NOTICE 파일을 참조하십시오.
+  저작권 소유권 관련 추가 정보를 위한 작업입니다.
+  ASF는 Apache License 버전 2.0에 따라 이 파일의 라이센스를 사용자에게 부여합니다.
+  ("라이센스"); 다음 사항을 준수하지 않는 한 이 파일을 사용할 수 없습니다.
+  면허증.  라이센스 사본은 다음 주소에서 얻을 수 있습니다.
  
      http://www.apache.org/licenses/LICENSE-2.0
  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+  관련 법률이 요구하거나 서면으로 합의하지 않는 한 소프트웨어
+  라이센스에 따라 배포되며 "있는 그대로" 배포됩니다.
+  명시적 또는 묵시적으로 어떠한 종류의 보증이나 조건도 없습니다.
+  사용 권한을 관리하는 특정 언어에 대해서는 라이센스를 참조하십시오.
+  사용권에 따른 제한.
 ---
 
-[Naive Bayes](http://en.wikipedia.org/wiki/Naive_Bayes_classifier) is a simple
-multiclass classification algorithm with the assumption of independence between
-every pair of features. Naive Bayes can be trained very efficiently. Within a
-single pass to the training data, it computes the conditional probability
-distribution of each feature given label, and then it applies Bayes' theorem to
-compute the conditional probability distribution of label given an observation
-and use it for prediction.
+[Naive Bayes](http://en.wikipedia.org/wiki/Naive_Bayes_classifier) 는 모든 기능 쌍 간의 독립성을 가정한 간단한 다중 클래스 분류 알고리즘이다. 나이브 베이즈는 매우 효율적으로 훈련될 수 있다. 훈련 데이터에 대한 단일 패스 내에서 주어진 각 형상의 조건부 확률 분포를 계산한 다음 베이즈의 정리를 적용하여 주어진 관측치의 조건부 확률 분포를 계산하고 예측에 사용한다.
 
-`spark.mllib` supports [multinomial naive
+`spark.mllib`은 [multinomial naive
 Bayes](http://en.wikipedia.org/wiki/Naive_Bayes_classifier#Multinomial_naive_Bayes)
-and [Bernoulli naive Bayes](http://nlp.stanford.edu/IR-book/html/htmledition/the-bernoulli-model-1.html).
-These models are typically used for [document classification](http://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html).
-Within that context, each observation is a document and each
-feature represents a term whose value is the frequency of the term (in multinomial naive Bayes) or
-a zero or one indicating whether the term was found in the document (in Bernoulli naive Bayes).
-Feature values must be nonnegative. The model type is selected with an optional parameter
-"multinomial" or "bernoulli" with "multinomial" as the default.
-[Additive smoothing](http://en.wikipedia.org/wiki/Lidstone_smoothing) can be used by
-setting the parameter $\lambda$ (default to $1.0$). For document classification, the input feature
-vectors are usually sparse, and sparse vectors should be supplied as input to take advantage of
-sparsity. Since the training data is only used once, it is not necessary to cache it.
+와 [Bernoulli naive Bayes](http://nlp.stanford.edu/IR-book/html/htmledition/the-bernoulli-model-1.html)를 지원한다.
+이러한 모델은 일반적으로 [document classification](http://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html)에 사용됩니다.
+이 문맥에서, 각 관측치는 문서이고, 각 특징은 (다항식 순진한 베이에서) 용어의 빈도 또는 (베르누이 순진한 베이에서) 용어의 발견 여부를 나타내는 0 또는 1의 값을 나타내는 항을 나타냅니다. 형상 값은 음수가 아니어야 합니다. 모델 유형은 선택적 매개변수인 "다항" 또는 "베르누이"를 기본값으로 사용하여 선택됩니다.
+[Additive smoothing](http://en.wikipedia.org/wiki/Lidstone_smoothing)은 매개 변수 $\lambda$ (default to $1.0$) 를 설정하여 사용할 수 있습니다. 문서 분류를 위해 입력 특징 벡터는 일반적으로 희소하며 희소성을 이용하기 위해 희소 벡터가 입력으로 제공되어야 합니다. 교육 데이터는 한 번만 사용되므로 캐시할 필요가 없습니다.
 
-## Examples
+## 예시
 
 <div class="codetabs">
 <div data-lang="scala" markdown="1">
 
-[NaiveBayes](api/scala/org/apache/spark/mllib/classification/NaiveBayes$.html) implements
-multinomial naive Bayes. It takes an RDD of
-[LabeledPoint](api/scala/org/apache/spark/mllib/regression/LabeledPoint.html) and an optional
-smoothing parameter `lambda` as input, an optional model type parameter (default is "multinomial"), and outputs a
-[NaiveBayesModel](api/scala/org/apache/spark/mllib/classification/NaiveBayesModel.html), which
-can be used for evaluation and prediction.
+[NaiveBayes](api/scala/org/apache/spark/mllib/classification/NaiveBayes$.html) 는 다항식 순진한 베이스를 구현합니다. 
+[LabeledPoint](api/scala/org/apache/spark/mllib/regression/LabeledPoint.html) 의 RDD와 선택적 평활 파라미터인 lambda'를 입력으로 사용하고(기본 모델 유형 파라미터는 "다항식"임), [NaiveBayesModel](api/scala/org/apache/spark/mllib/classification/NaiveBayesModel.html)을 출력합니다
 
 Refer to the [`NaiveBayes` Scala docs](api/scala/org/apache/spark/mllib/classification/NaiveBayes$.html) and [`NaiveBayesModel` Scala docs](api/scala/org/apache/spark/mllib/classification/NaiveBayesModel.html) for details on the API.
 
