@@ -1,11 +1,6 @@
 # Apache Spark
 
-Spark is a unified analytics engine for large-scale data processing. It provides
-high-level APIs in Scala, Java, Python, and R, and an optimized engine that
-supports general computation graphs for data analysis. It also supports a
-rich set of higher-level tools including Spark SQL for SQL and DataFrames,
-pandas API on Spark for pandas workloads, MLlib for machine learning, GraphX for graph processing,
-and Structured Streaming for stream processing.
+스파크는 대규모 데이터 처리를 위한 통합 분석 엔진입니다. 스칼라, 자바, 파이썬, R로 된 고급 API를 제공하며, 데이터 분석을 위한 일반적인 연산 그래프를 지원하는 최적화된 엔진을 제공합니다. 또한 SQL 및 DataFrames용 Spark SQL, 판다 워크로드용 Panda API, 머신러닝용 MLlib, 그래프 처리를 위한 GraphX, 스트림 처리를 위한 구조화된 스트리밍을 포함한 다양한 고급 도구 세트를 지원합니다.
 
 <https://spark.apache.org/>
 
@@ -15,95 +10,83 @@ and Structured Streaming for stream processing.
 [![PySpark Coverage](https://codecov.io/gh/apache/spark/branch/master/graph/badge.svg)](https://codecov.io/gh/apache/spark)
 
 
-## Online Documentation
+## 온라인 문서
 
-You can find the latest Spark documentation, including a programming
-guide, on the [project web page](https://spark.apache.org/documentation.html).
-This README file only contains basic setup instructions.
+프로그래밍 가이드를 포함한 최신 스파크 설명서는 [project web page](https://spark.apache.org/documentation.html) 에서 확인할 수 있습니다.
+이 README 파일에는 기본 설정 지침만 포함되어 있습니다.
 
-## Building Spark
+## Spark 빌드
 
-Spark is built using [Apache Maven](https://maven.apache.org/).
-To build Spark and its example programs, run:
+Spark는 [Apache Maven](https://maven.apache.org/) 을 사용하여 구축됩니다.
+Spark 및 해당 예제 프로그램을 빌드하려면 다음을 실행합니다:
 
     ./build/mvn -DskipTests clean package
 
-(You do not need to do this if you downloaded a pre-built package.)
+(사전 빌드된 패키지를 다운로드한 경우에는 이 작업을 수행할 필요가 없습니다.)
 
-More detailed documentation is available from the project site, at
-["Building Spark"](https://spark.apache.org/docs/latest/building-spark.html).
+자세한 문서는 프로젝트 사이트 ["Building Spark"](https://spark.apache.org/docs/latest/building-spark.html) 에서 확인할 수 있습니다.
 
-For general development tips, including info on developing Spark using an IDE, see ["Useful Developer Tools"](https://spark.apache.org/developer-tools.html).
+IDE를 사용한 Spark 개발에 대한 정보를 포함한 일반적인 개발 팁은 ["Useful Developer Tools"](https://spark.apache.org/developer-tools.html) 를 참조하십시오.
 
-## Interactive Scala Shell
+## 대화형 Scala Shell
 
-The easiest way to start using Spark is through the Scala shell:
+스파크를 사용하는 가장 쉬운 방법은 Scala shell을 사용하는 것입니다:
 
     ./bin/spark-shell
 
-Try the following command, which should return 1,000,000,000:
+1,000,000,000을 반환하는 다음 명령어를 실행해 보세요:
 
     scala> spark.range(1000 * 1000 * 1000).count()
 
-## Interactive Python Shell
+## 대화형 Python Shell
 
-Alternatively, if you prefer Python, you can use the Python shell:
+대안으로, 파이썬을 선호하는 경우 Python shell을 사용할 수 있습니다:
 
     ./bin/pyspark
 
-And run the following command, which should also return 1,000,000,000:
+1,000,000,000을 반환하는 다음 명령어를 실행해 보세요:
 
     >>> spark.range(1000 * 1000 * 1000).count()
 
-## Example Programs
+## 예제 프로그램
 
-Spark also comes with several sample programs in the `examples` directory.
-To run one of them, use `./bin/run-example <class> [params]`. For example:
+스파크에는 예제 디렉터리에 여러 `examples` 프로그램도 함께 제공된다.
+둘 중 하나를 실행하려면 `./bin/run-example <class> [params]` 을 사용하세요. 예를 들면:
 
     ./bin/run-example SparkPi
 
-will run the Pi example locally.
+에서 Pi 예제를 로컬로 실행합니다.
 
-You can set the MASTER environment variable when running examples to submit
-examples to a cluster. This can be a mesos:// or spark:// URL,
-"yarn" to run on YARN, and "local" to run
-locally with one thread, or "local[N]" to run locally with N threads. You
-can also use an abbreviated class name if the class is in the `examples`
-package. For instance:
+예를 실행할 때 클러스터에 예제를 제출할 때 MASTER 환경 변수를 설정할 수 있습니다. 
+이것은 mesos:// 또는 spark:// URL이고, YARN에서 실행하기 위한 "yarn", 그리고 하나의 스레드로 로컬로 실행하려면 "local" , 또는 "local[N]" 은 N개의 스레드로 로컬로 실행됩니다. 클래스가 `examples`' 패키지에 있는 경우 단축된 클래스 이름을 사용할 수도 있습니다. 예시:
 
     MASTER=spark://host:7077 ./bin/run-example SparkPi
 
-Many of the example programs print usage help if no params are given.
+대부분의 예제 프로그램 츨력은 매개 변수가 제공되지 않을 때 도움이 됩니다.
 
-## Running Tests
+## 테스트 실행
 
-Testing first requires [building Spark](#building-spark). Once Spark is built, tests
-can be run using:
+먼저 테스트하려면 [building Spark](#building-spark) 가 필요합니다.
+스파크가 제작되면 다음을 사용하여 테스트를 실행할 수 있습니다:
 
     ./dev/run-tests
 
-Please see the guidance on how to
+다음 방법에 대한 지침을 참조하십시오.
 [run tests for a module, or individual tests](https://spark.apache.org/developer-tools.html#individual-tests).
 
-There is also a Kubernetes integration test, see resource-managers/kubernetes/integration-tests/README.md
+또한 Kubernetes 통합 테스트도 있습니다. resource-managers/kubernetes/integration-tests/README.md 를 참조하세요.
 
-## A Note About Hadoop Versions
+## 하둡 버전에 관하여
 
-Spark uses the Hadoop core library to talk to HDFS and other Hadoop-supported
-storage systems. Because the protocols have changed in different versions of
-Hadoop, you must build Spark against the same version that your cluster runs.
+Spark는 Hadoop 코어 라이브러리를 사용하여 HDFS 및 기타 Hadoop 지원 스토리지 시스템과 통신합니다. 프로토콜이 Hadoop의 다른 버전에서 변경되었으므로 클러스터가 실행되는 동일한 버전에 대해 Spark를 빌드해야 합니다.
 
-Please refer to the build documentation at
-["Specifying the Hadoop Version and Enabling YARN"](https://spark.apache.org/docs/latest/building-spark.html#specifying-the-hadoop-version-and-enabling-yarn)
-for detailed guidance on building for a particular distribution of Hadoop, including
-building for particular Hive and Hive Thriftserver distributions.
+특정 Hive 및 Hive Sreveftserver 배포를 위한 빌드를 포함하여 Hadoop의 특정 배포를 위한 빌드에 대한 자세한 지침은
+["Specifying the Hadoop Version and Enabling YARN"](https://spark.apache.org/docs/latest/building-spark.html#specifying-the-hadoop-version-and-enabling-yarn) 에서 빌드 문서를 참조하십시오..
 
-## Configuration
+## 구성
 
-Please refer to the [Configuration Guide](https://spark.apache.org/docs/latest/configuration.html)
-in the online documentation for an overview on how to configure Spark.
+Spark 구성 방법에 대한 개요는 온라인 설명서의 [Configuration Guide](https://spark.apache.org/docs/latest/configuration.html) 를 참조하십시오.
 
-## Contributing
+## 기여
 
-Please review the [Contribution to Spark guide](https://spark.apache.org/contributing.html)
-for information on how to get started contributing to the project.
+프로젝트 참여를 시작하는 방법에 대한 자세한 내용은 [Contribution to Spark guide](https://spark.apache.org/contributing.html) 를 참조하십시오.
