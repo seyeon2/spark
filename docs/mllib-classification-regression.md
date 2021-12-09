@@ -29,7 +29,7 @@ classification](http://en.wikipedia.org/wiki/Multiclass_classification), 그리�
   </tbody>
 </table>
 
-More details for these methods can be found here:
+이 방법들을 자세히 알고 싶으면 아래를 참조하세요:
 
 * [Linear models](mllib-linear-methods.html)
   * [classification (SVMs, logistic regression)](mllib-linear-methods.html#classification)
