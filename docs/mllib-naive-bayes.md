@@ -4,7 +4,6 @@
 타이틀: 네이브 베이즈 - RDD 기반 API
 라이센스: |
   하나 이상의 기여자 라이센스 계약에 따라 ASF(Apache Software Foundation)에 라이센스가 부여됩니다. 저작권 소유에 대한 추가 정보는 본 작업과 함께 배포된 NOTICE 파일을 참조하십시오. ASF는 Apache License 버전 2.0("License")에 따라 이 파일에 라이센스를 부여하며, 라이센스를 준수하지 않는 한 이 파일을 사용할 수 없습니다. 귀하는 http://www.apache.org/licenses/LICENSE-2.0에서 라이센스 복사본을 얻을 수 있습니다. 관련 법률에서 요구하거나 서면으로 동의하지 않는 한 라이센스에 따라 배포되는 소프트웨어는 명시적 또는 묵시적 보증 또는 조건 없이 "있는 그대로" 배포됩니다. 라이센스 아래의 사용 권한 및 제한 사항을 관리하는 특정 언어는 라이센스를 참조하십시오.
-  
 ---
 
 [Naive Bayes](http://en.wikipedia.org/wiki/Naive_Bayes_classifier) 는 모든 기능 쌍 간의 독립성을 가정한 간단한 다중 클래스 분류 알고리즘이다. 나이브 베이즈는 매우 효율적으로 훈련될 수 있다. 훈련 데이터에 대한 단일 패스 내에서 주어진 각 형상의 조건부 확률 분포를 계산한 다음 베이즈의 정리를 적용하여 주어진 관측치의 조건부 확률 분포를 계산하고 예측에 사용한다.
@@ -24,36 +23,28 @@ Bayes](http://en.wikipedia.org/wiki/Naive_Bayes_classifier#Multinomial_naive_Bay
 [NaiveBayes](api/scala/org/apache/spark/mllib/classification/NaiveBayes$.html) 는 다항식 순진한 베이스를 구현합니다. 
 [LabeledPoint](api/scala/org/apache/spark/mllib/regression/LabeledPoint.html) 의 RDD와 선택적 평활 파라미터인 lambda'를 입력으로 사용하고(기본 모델 유형 파라미터는 "다항식"임), [NaiveBayesModel](api/scala/org/apache/spark/mllib/classification/NaiveBayesModel.html)을 출력합니다
 
-Refer to the [`NaiveBayes` Scala docs](api/scala/org/apache/spark/mllib/classification/NaiveBayes$.html) and [`NaiveBayesModel` Scala docs](api/scala/org/apache/spark/mllib/classification/NaiveBayesModel.html) for details on the API.
+[`NaiveBayes` Scala docs](api/scala/org/apache/spark/mllib/classification/NaiveBayes$.html) 및 [`NaiveBayesModel` Scala docs](api/scala/org/apache/spark/mllib/classification/NaiveBayesModel.html) 을 참조하십시오.
 
 {% include_example scala/org/apache/spark/examples/mllib/NaiveBayesExample.scala %}
 </div>
 <div data-lang="java" markdown="1">
 
-[NaiveBayes](api/java/org/apache/spark/mllib/classification/NaiveBayes.html) implements
-multinomial naive Bayes. It takes a Scala RDD of
-[LabeledPoint](api/java/org/apache/spark/mllib/regression/LabeledPoint.html) and an
-optionally smoothing parameter `lambda` as input, and output a
-[NaiveBayesModel](api/java/org/apache/spark/mllib/classification/NaiveBayesModel.html), which
-can be used for evaluation and prediction.
+[NaiveBayes](api/java/org/apache/spark/mllib/classification/NaiveBayes.html) 는 다항식 순진한 베이스를 구현합니다. 
+[LabeledPoint](api/java/org/apache/spark/mllib/regression/LabeledPoint.html) 의 스칼라 RDD와 선택적으로 매개 변수 'lambda'를 입력으로 평활하고 평가 및 예측에 사용할 수 있는 [NaiveBayesModel](api/java/org/apache/spark/mllib/classification/NaiveBayesModel.html) 을 출력합니다.
 
-Refer to the [`NaiveBayes` Java docs](api/java/org/apache/spark/mllib/classification/NaiveBayes.html) and [`NaiveBayesModel` Java docs](api/java/org/apache/spark/mllib/classification/NaiveBayesModel.html) for details on the API.
+[`NaiveBayes` Java docs](api/java/org/apache/spark/mllib/classification/NaiveBayes.html) 및 [`NaiveBayesModel` Java docs](api/java/org/apache/spark/mllib/classification/NaiveBayesModel.html) 을 참조하십시오.
 
 {% include_example java/org/apache/spark/examples/mllib/JavaNaiveBayesExample.java %}
 </div>
 <div data-lang="python" markdown="1">
 
-[NaiveBayes](api/python/reference/api/pyspark.mllib.classification.NaiveBayes.html) implements multinomial
-naive Bayes. It takes an RDD of
-[LabeledPoint](api/python/reference/api/pyspark.mllib.regression.LabeledPoint.html) and an optionally
-smoothing parameter `lambda` as input, and output a
-[NaiveBayesModel](api/python/reference/api/pyspark.mllib.classification.NaiveBayesModel.html), which can be
-used for evaluation and prediction.
+[NaiveBayes](api/python/reference/api/pyspark.mllib.classification.NaiveBayes.html) 는 다항식 순진한 베이스를 구현합니다.  
+[LabeledPoint](api/python/reference/api/pyspark.mllib.regression.LabeledPoint.html) 의 스칼라 RDD와 선택적으로 매개 변수 'lambda'를 입력으로 평활하고 평가 및 예측에 사용할 수 있는 [NaiveBayesModel](api/python/reference/api/pyspark.mllib.classification.NaiveBayesModel.html)을 출력합니다.
 
-Note that the Python API does not yet support model save/load but will in the future.
+Python API는 아직 모델 저장/로드 기능을 지원하지 않지만 향후 지원될 예정입니다.
 
-Refer to the [`NaiveBayes` Python docs](api/python/reference/api/pyspark.mllib.classification.NaiveBayes.html) and [`NaiveBayesModel` Python docs](api/python/reference/api/pyspark.mllib.classification.NaiveBayesModel.html) for more details on the API.
+API에 대한 자세한 내용은 [`NaiveBayes` Python docs](api/python/reference/api/pyspark.mllib.classification.NaiveBayes.html) 및 [`NaiveBayesModel` Python docs](api/python/reference/api/pyspark.mllib.classification.NaiveBayesModel.html) 을 참조하십시오.
 
-{% include_example python/mllib/naive_bayes_example.py %}
+  {% include_example python/mllib/naive_bayes_example.py %}
 </div>
 </div>
