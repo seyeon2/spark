@@ -1,27 +1,13 @@
 ---
-layout: global
-title: "MLlib: RDD-based API"
-displayTitle: "MLlib: RDD-based API"
-license: |
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
- 
-     http://www.apache.org/licenses/LICENSE-2.0
- 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+레이아웃: 전역
+제목: "MLlib: RDD 기반 API"
+보여지는 제목: "MLlib: RDD 기반 API"
+라이센스: |
+  하나 이상의 기여자 라이센스 계약에 따라 ASF(Apache Software Foundation)에 라이센스가 부여됩니다. 저작권 소유에 대한 추가 정보는 본 작업과 함께 배포된 NOTICE 파일을 참조하십시오. ASF는 Apache License 버전 2.0("License")에 따라 이 파일에 라이센스를 부여하며, 라이센스를 준수하지 않는 한 이 파일을 사용할 수 없습니다. 귀하는 http://www.apache.org/licenses/LICENSE-2.0에서 라이센스 복사본을 얻을 수 있습니다. 관련 법률에서 요구하거나 서면으로 동의하지 않는 한 라이센스에 따라 배포되는 소프트웨어는 명시적 또는 묵시적 보증 또는 조건 없이 "있는 그대로" 배포됩니다. 라이센스 아래의 사용 권한 및 제한 사항을 관리하는 특정 언어는 라이센스를 참조하십시오.
 ---
 
-This page documents sections of the MLlib guide for the RDD-based API (the `spark.mllib` package).
-Please see the [MLlib Main Guide](ml-guide.html) for the DataFrame-based API (the `spark.ml` package),
-which is now the primary API for MLlib.
+
+이 페이지에는 RDD 기반 API(`spark.mllib` 패키지)에 대한 MLlib 가이드의 섹션이 나와 있습니다. 이제 MLlib의 기본 API가 된 DataFrame 기반 API(`spark.ml` 패키지)는 [MLlib Main Guide](ml-guide.html)를 참조하십시오.
 
 * [Data types](mllib-data-types.html)
 * [Basic statistics](mllib-statistics.html)
